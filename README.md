@@ -1,3 +1,5 @@
+Code forked for the Jetbrains Machine Learning challenge.
+
 <img src="images/Header.png" width="800" alt="LambdaNet Header"/>
 
 This is the source code repo for the ICLR paper [*LambdaNet: Probabilistic Type Inference using Graph Neural Networks*](https://openreview.net/forum?id=Hkx6hANtwH). For an overview of how LambdaNet works, see [our video from ICLR 2020](https://iclr.cc/virtual_2020/poster_Hkx6hANtwH.html).
@@ -33,3 +35,16 @@ We also provide a Docker file to automatically download and install all the depe
   && docker run --name lambdanet --memory 14g -t -i lambdanet:v1 `. (Make sure the machine you are using has enough memory for the `docker run` command.)
   
   4. After the Docker container has successfully started, run `sbt runTrained`, and you should see LambdaNet outputs "libAccuracy" and "projectAccuracy" after a few minutes. LambdaNet also stores its predictions into an Html file under `<test TS project>/predictions/` (`<test TS project>` is currently default to `data/ts-algorithms`, but you can change this in `src/main/scala/lambdanet/RunTrainedModel.scala`.)
+
+Java CLI
+------
+Be sure to follow the steps descrived above before running the Java CLI.
+
+### How to run
+To run the Java CLI, run `sbt "runMain cli.JavaCLI models/newParsing-GAT1-fc2-newSim-decay-6 data/parsedRepos data/ts-algorithms"`. The first argument is the pre-trained model path, the second is the parse from file path, and the last the input project directory.
+
+The command will print in the stdout the predictions for the input project. A large window width is recommended for a better output visualization.
+
+### How to create a FAT JAR
+
+To create a fat jar with all dependencies, run `sbt package`.

@@ -86,3 +86,5 @@ runTrained :=
   (runMain in Compile).toTask(" lambdanet.RunTrainedModel").value
 
 discoveredMainClasses in Compile += "driver.JavaDriver"
+
+mainClass in (Compile, packageBin) := Some("cli.JavaCLI")
